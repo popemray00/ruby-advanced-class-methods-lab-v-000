@@ -47,10 +47,8 @@ class Song
 
     self.all.each do |name, artist_name |
       artist_name.name = artist_name.name.split("-").join(" ")
-
-
-
-
+    end
+    
   end
 
   end
