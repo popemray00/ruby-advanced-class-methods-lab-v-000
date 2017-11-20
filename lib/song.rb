@@ -41,14 +41,31 @@ class Song
     self.all.sort_by {|song| song.name}
   end
 
-  def self.new_from_filename(name, artist_name)
-    song = self.new
-    artist = self.new
+  def self.create_from_filename(filename)
+  parts = filename.split(" - ")
+  artist_name = parts[0]
+  song_name = parts[1].gsub(".mp3", "")
 
-    self.all.each do |name, artist_name |
-      artist_name.name = artist_name.name.split("-").join(" ")
-    end
-    
-  end
+  song = self.create
+  song.name = song_name
+  song.artist_name = artist_name
+  song
+end
+
+def self.new_from_filename(filename)
+  parts = filename.split(" - ")
+  artist_name = parts[0]
+  song_name = parts[1].gsub(".mp3", "")
+
+  song = self.new
+  song.name = song_name
+  song.artist_name = artist_name
+  song
+end
+
+def self.destroy_all
+  self.all.clear
+
+end
 
   end
